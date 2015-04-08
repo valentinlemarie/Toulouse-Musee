@@ -13,8 +13,9 @@ import java.sql.Time
 class MuseeSpec extends Specification {
 
     @Unroll
-    void "test valide musee correctement forme"(String nom, Time horaire ,int numero,String accesBus , String accesMetro){
+    void "test la validite d'un musee correctement forme"(String unNom, String desHoraires, int unTelephone, String unAccesBus, String unAccesMetro){
         given: "un musee initialise correctement"
+        Musee musee = new Musee()
 
     }
     def setup() {

@@ -1,19 +1,33 @@
 package musee
 
-import java.sql.Time
+import java.text.ParseException
 
 class DemandeVisite {
 
     String code
-    Time dateDebutPeriode
-    Time dateFinPeriode
+    Date dateDebutPeriode
+    Date dateFinPeriode
     int nbPersonnes
     boolean status
 
     static constraints = {
-        code nullable: false
-        dateDebutPeriode nullable: false
-        dateFinPeriode nullable: false
+        code blank: false
+        dateDebutPeriode validator: {
+            try {
+                Date.parse('MM-dd-yyyy hh:mma', it)
+                return true
+            } catch (ParseException e) {
+                return false
+            }
+        }
+        dateFinPeriode validator: {
+            try {
+                Date.parse('MM-dd-yyyy hh:mma', it)
+                return true
+            } catch (ParseException e) {
+                return false
+            }
+        }
         nbPersonnes min: 1
     }
 }

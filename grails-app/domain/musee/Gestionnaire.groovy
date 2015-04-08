@@ -1,10 +1,10 @@
 package musee
 
-class Gestionaire {
+class Gestionnaire {
 
     String nom
 
     static constraints = {
-        nom nullable: false
+        nom blank: false
     }
 }

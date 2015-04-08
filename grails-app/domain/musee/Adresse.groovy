@@ -8,9 +8,9 @@ class Adresse {
     String ville
 
     static constraints = {
-        rue nullable: false
-        codePostal nullable: false ,size:5
-        ville nullable: false
-        numero min: 0
+        numero min: 1
+        rue blank: false
+        codePostal size: 5, blank: false
+        ville blank: false
     }
 }
