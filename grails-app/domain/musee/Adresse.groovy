@@ -10,7 +10,7 @@ class Adresse {
     static constraints = {
         numero min: 1
         rue blank: false
-        codePostal size: 5, blank: false
+        codePostal size: 5..5, blank: false
         ville blank: false
     }
 }

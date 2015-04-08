@@ -9,12 +9,5 @@ import spock.lang.Specification
 @TestFor(Gestionnaire)
 class GestionnaireSpec extends Specification {
 
-    def setup() {
-    }
 
-    def cleanup() {
-    }
-
-    void "test something"() {
-    }
 }
