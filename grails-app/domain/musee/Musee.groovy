@@ -6,7 +6,7 @@ class Musee {
 
     String nom
     Time horaireOuverture = []
-    String telephone
+    int telephone
     String accesMetro
     String accesBus
 
