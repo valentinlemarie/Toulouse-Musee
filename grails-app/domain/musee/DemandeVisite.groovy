@@ -8,7 +8,10 @@ class DemandeVisite {
     Date dateDebutPeriode
     Date dateFinPeriode
     int nbPersonnes
-    boolean status
+    /**
+     * A : visite en attente, C : visite en cours, R : visite realisee
+     */
+    String statut
 
     static constraints = {
         code blank: false
@@ -29,5 +32,6 @@ class DemandeVisite {
             }
         }
         nbPersonnes min: 1
+        statut inList: ["C", "A", "R"]
     }
 }

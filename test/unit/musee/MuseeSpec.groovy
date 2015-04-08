@@ -32,7 +32,7 @@ class MuseeSpec extends Specification {
 
     @Unroll
     void "test l'invalidite d'un musee invalide"(String unNom, String desHoraires, String unTelephone){
-        given: "un musee initialise correctement"
+        given: "un musee initialise sans nom, horaires ou numero de telephone "
         Musee musee = new Musee(nom: unNom, horairesOuverture: desHoraires, telephone: unTelephone)
 
         expect: "le musee est invalide"
