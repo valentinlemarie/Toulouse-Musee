@@ -10,7 +10,6 @@ import spock.lang.Unroll
 @TestFor(Adresse)
 class AdresseSpec extends Specification {
 
-
     @Unroll
     void "test la validite d'une adresse valide"(int unNumero, String uneRue , String unCodePostal , String uneVille){
         given: "une adresse initialise correctement"
@@ -27,10 +26,10 @@ class AdresseSpec extends Specification {
 
     @Unroll
     void "test l'invalidite d'une adresse invalide"(int unNumero, String uneRue , String unCodePostal , String uneVille){
-        given: "une adresse initialise correctement"
+        given: "une adresse mal initialise"
         Adresse adresse = new Adresse(numero: unNumero,rue: uneRue ,codePostal: unCodePostal,ville: uneVille)
 
-        expect: "une  adresse invalide"
+        expect: "une adresse invalide"
         adresse.validate() == false
 
         where:

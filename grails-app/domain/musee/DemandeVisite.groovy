@@ -1,7 +1,5 @@
 package musee
 
-import java.text.ParseException
-
 class DemandeVisite {
 
     String code

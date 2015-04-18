@@ -28,9 +28,9 @@ class DemandeVisiteSpec extends Specification {
 
     @Unroll
     void "test l'invalidite d'une demande de visite invalide"(String monCode, Date maDateDebutPeriode, Date maDateFinPeriode, int monNbPersonnes, String monStatus) {
-        given: "une demande de visite initialise correctement"
+        given: "une demande de visite mal initialise"
         DemandeVisite demandeVisite = new DemandeVisite(code: monCode, dateDebutPeriode: maDateDebutPeriode, dateFinPeriode: maDateFinPeriode, nbPersonnes: monNbPersonnes, statut: monStatus)
-        expect: "une demande de visite  invalide"
+        expect: "une demande de visite invalide"
         demandeVisite.validate() == false || maDateDebutPeriode >= maDateFinPeriode
 
         where:
