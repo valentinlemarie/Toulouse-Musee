@@ -11,6 +11,8 @@ class DemandeVisite {
      */
     String statut
 
+    static hasMany = [musees: Musee]
+
     static constraints = {
         code blank: false
         dateDebutPeriode format: 'MM-dd-yyyy hh:mm'
