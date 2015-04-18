@@ -15,22 +15,8 @@ class DemandeVisite {
 
     static constraints = {
         code blank: false
-        dateDebutPeriode validator: {
-            try {
-                Date.parse('MM-dd-yyyy hh:mma', it)
-                return true
-            } catch (ParseException e) {
-                return false
-            }
-        }
-        dateFinPeriode validator: {
-            try {
-                Date.parse('MM-dd-yyyy hh:mma', it)
-                return true
-            } catch (ParseException e) {
-                return false
-            }
-        }
+        dateDebutPeriode format: 'MM-dd-yyyy hh:mm'
+        dateFinPeriode format: 'MM-dd-yyyy hh:mm'
         nbPersonnes min: 1
         statut inList: ["C", "A", "R"]
     }
