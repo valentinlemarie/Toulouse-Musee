@@ -3,8 +3,8 @@ package musee
 import java.sql.Time
 
 class Musee {
+    static hasOne = [adresse: Adresse,gestionaire:Gestionnaire]
     static hasMany = [demandes: DemandeVisite]
-
     String nom
     String horairesOuverture
     String telephone

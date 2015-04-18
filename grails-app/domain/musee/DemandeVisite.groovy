@@ -11,7 +11,8 @@ class DemandeVisite {
      */
     String statut
 
-    static hasMany = [musees: Musee]
+    static hasMany = [musee: Musee]
+    static belongsTo = [Musee]
 
     static constraints = {
         code blank: false
