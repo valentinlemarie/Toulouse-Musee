@@ -15,6 +15,7 @@ class AdresseSpec extends Specification {
     void "test la validite d'une adresse valide"(int unNumero, String uneRue , String unCodePostal , String uneVille){
         given: "une adresse initialise correctement"
         Adresse adresse = new Adresse(numero: unNumero,rue: uneRue ,codePostal: unCodePostal,ville: uneVille)
+
         expect: "une adresse  valide"
         adresse.validate() == true
 

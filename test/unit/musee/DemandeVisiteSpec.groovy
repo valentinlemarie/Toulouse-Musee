@@ -11,29 +11,38 @@ import spock.lang.Unroll
 class DemandeVisiteSpec extends Specification {
 
     @Unroll
-    void "test la validite d'une demande de visite valide"(String monCode, Date maDateDebutPeriode, Date maDateFinPeriode, int monNbPersonnes, boolean monStatus) {
+    void "test la validite d'une demande de visite valide"(String monCode, Date maDateDebutPeriode, Date maDateFinPeriode, int monNbPersonnes, String monStatus) {
         given: "une demande de visite initialise correctement"
-        DemandeVisite demandeVisite = new DemandeVisite(code: monCode, dateDebutPeriode: maDateDebutPeriode, dateFinPeriode: maDateFinPeriode, status: monStatus)
+        DemandeVisite demandeVisite = new DemandeVisite(code: monCode, dateDebutPeriode: maDateDebutPeriode, dateFinPeriode: maDateFinPeriode, nbPersonnes: monNbPersonnes, statut: monStatus)
 
-        expect: "une demande de visite  valide"
+        expect: "une demande de visite valide"
         demandeVisite.validate() == true
+        maDateDebutPeriode < maDateFinPeriode
 
         where:
         monCode | maDateDebutPeriode         | maDateFinPeriode           | monNbPersonnes | monStatus
-        "code"  | new Date(2014,03,25,10,15) | new Date(2014,03,25,10,55) | 1              | true
-        "code"  | new Date(2014,03,25,10,15) | new Date(2014,03,25,10,15) | 10             | false
+        "code"  | new Date(2014,03,25,10,15) | new Date(2014,03,25,10,55) | 1              | "C"
+        "code"  | new Date(2014,03,25,10,15) | new Date(2014,03,25,11,15) | 10             | "A"
+        "code"  | new Date(2014,03,25,10,15) | new Date(2014,03,25,10,45) | 18             | "R"
     }
 
     @Unroll
-    void "test l'invalidite d'une demande de visite invalide"(String monCode, Date maDateDebutPeriode, Date maDateFinPeriode, int monNbPersonnes, boolean monStatus) {
+    void "test l'invalidite d'une demande de visite invalide"(String monCode, Date maDateDebutPeriode, Date maDateFinPeriode, int monNbPersonnes, String monStatus) {
         given: "une demande de visite initialise correctement"
-        DemandeVisite demandeVisite = new DemandeVisite(code: monCode, dateDebutPeriode: maDateDebutPeriode, dateFinPeriode: maDateFinPeriode, status: monStatus)
+        DemandeVisite demandeVisite = new DemandeVisite(code: monCode, dateDebutPeriode: maDateDebutPeriode, dateFinPeriode: maDateFinPeriode, nbPersonnes: monNbPersonnes, statut: monStatus)
         expect: "une demande de visite  invalide"
-        demandeVisite.validate() == false
+        demandeVisite.validate() == false || maDateDebutPeriode >= maDateFinPeriode
 
         where:
-        monCode | maDateDebutPeriode         | maDateFinPeriode              | monNbPersonnes | monStatus
-        ""      | new Date(2014,03,25,10,15) | new Date(2014,023,25,10,30)   | 0              | true
-        null    | new Date(2014,03,25,10,15) | new Date(2014,03,250,100,155) | -10            | false
+        monCode | maDateDebutPeriode         | maDateFinPeriode           | monNbPersonnes | monStatus
+        "code"  | new Date(2014,03,25,10,15) | new Date(2014,03,25,10,30) | 1              | "salut"
+        "code"  | new Date(2014,03,25,10,15) | new Date(2014,03,25,10,30) | 1              | null
+        "code"  | new Date(2014,03,25,10,15) | new Date(2014,03,25,10,55) | -10            | "C"
+        "code"  | new Date(2014,03,25,10,15) | new Date(2014,03,25,10,55) | 0              | "C"
+        "code"  | new Date(2014,03,25,10,15) | null                       | 10             | "C"
+        "code"  | null                       | new Date(2014,03,25,10,55) | 10             | "C"
+        "code"  | new Date(2014,03,25,10,15) | new Date(2011,03,25,10,55) | 10             | "C"
+        ""      | new Date(2014,03,25,10,15) | new Date(2011,03,25,10,55) | 10             | "C"
+        null    | new Date(2014,03,25,10,15) | new Date(2011,03,25,10,55) | 10             | "C"
     }
 }
