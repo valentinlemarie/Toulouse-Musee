@@ -5,11 +5,6 @@ import grails.transaction.Transactional
 @Transactional
 class DemandeVisiteService {
 
-    DemandeVisite demandeVisite
-    Musee musee
-    def serviceMethod() {
-
-    }
 
     def insertOrUpdateDemande(DemandeVisite demandeVisite1,Musee musee1){
         demandeVisite1.save()
