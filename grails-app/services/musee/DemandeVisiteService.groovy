@@ -6,15 +6,15 @@ import grails.transaction.Transactional
 class DemandeVisiteService {
 
 
-    def insertOrUpdateDemande(DemandeVisite demandeVisite1,Musee musee1){
+    DemandeVisite insertOrUpdateDemandeVisite(DemandeVisite demandeVisite1,Musee musee1){
+        musee1.save()
+        musee1.addToDemandes(demandeVisite1)
         demandeVisite1.save()
-        musee1.setDemandes(demandeVisite1)
         demandeVisite1
     }
 
-    def removeVisite(DemandeVisite demandeVisite1,Musee musee1){
+    void deleteDemandeVisite(DemandeVisite demandeVisite1,Musee musee1){
         musee1.removeFromDemandes(demandeVisite1)
         demandeVisite1.delete()
-        demandeVisite1
     }
 }
