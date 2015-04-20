@@ -45,4 +45,22 @@ class MuseeServiceSpec extends Specification {
         and: "le gestionnaire a dans sa liste de musée le musée passé en paramètre"
         unGestionnaire.musees.contains(resultMusee)
     }
+
+    void "test suppression d'un musée"() {
+
+        given: "un musée existant en base"
+        Adresse uneAdresse = new Adresse(rue: "rue de Rudel", numero: 26, codePostal: "81000", ville: "Albi")
+        Gestionnaire unGestionnaire = new Gestionnaire(nom: "marc");
+        Musee unMusee = new Musee(nom: "Musee", horairesOuverture: "lundi au vendredi de 10h a 20h", telephone: "0563214582")
+        unMusee = museeService.insertOrUpdateMusee(unMusee, uneAdresse, unGestionnaire)
+
+        when: "on tente de supprimer le musée"
+        museeService.deleteMusee(unMusee)
+
+        then: "le musée n'existe plus en base"
+        Musee.findById(unMusee.id) == null
+
+        and: "le gestionnaire n'a plus le musée dans sa liste de musée"
+        !unGestionnaire.musees.contains(unMusee)
+    }
 }
