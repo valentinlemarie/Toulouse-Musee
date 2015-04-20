@@ -27,19 +27,19 @@
                             Le nom du musée contient :
                         </label>
                         <g:textField name="nom"/>
-                        <label for="adresse.codePostal">
+                        <label for="codePostal">
                             Le code postal du musée correspond à :
                         </label>
-                        <g:textField name="adresse.codePostal"/>
+                        <g:textField name="codePostal"/>
                     </div>
                     <div class="fieldcontain">
-                        <label for="adresse.rue">
+                        <label for="rue">
                             La rue du musée contient :
                         </label>
-                        <g:textField name="adresse.rue"/>
+                        <g:textField name="rue"/>
                     </div>
                     <div style="float: right">
-                        <g:actionSubmit action="doSearchInscriptions" value="Rechercher" />
+                        <g:actionSubmit action="doSearchMusees" value="Rechercher" />
                     </div>
                 </fieldset>
             </g:form>
