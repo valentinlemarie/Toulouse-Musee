@@ -5,7 +5,11 @@ import grails.transaction.Transactional
 @Transactional
 class AdresseService {
 
-    Adresse insertOrUpdateAdresse(Adresse adresse1){
-        adresse1.save()
+    Adresse insertOrUpdateAdresse(Adresse adresse){
+        adresse.save()
+    }
+
+    void deleteAdresse(Adresse adresse) {
+        adresse.delete()
     }
 }
