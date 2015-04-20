@@ -7,7 +7,7 @@ import spock.lang.*
 /**
  *
  */
-class ServiceDemandeVisiteSpec extends Specification {
+class DemandeVisiteServiceSpec extends Specification {
 
    
 }
