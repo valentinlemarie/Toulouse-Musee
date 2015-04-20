@@ -12,8 +12,12 @@ class MuseeSpec extends Specification {
 
     @Unroll
     void "test la validite d'un musee valide"(String unAccesMetro, String unAccesBus){
-        given: "un musee initialise correctement"
-        Musee musee = new Musee(nom: "Musee", horairesOuverture: "lundi au vendredi de 10h a 20h", telephone: "0563214582", accesMetro: unAccesMetro, accesBus: unAccesBus)
+        given: "une adresse qq"
+        Adresse monAdresse = new Adresse();
+        and:"un gestionnaire qq"
+        Gestionnaire gestionnaire = new Gestionnaire()
+        and: "un musee initialise correctement"
+        Musee musee = new Musee(gestionnaire: gestionnaire,adresse: monAdresse,nom: "Musee", horairesOuverture: "lundi au vendredi de 10h a 20h", telephone: "0563214582", accesMetro: unAccesMetro, accesBus: unAccesBus)
 
         expect: "le musee est valide"
         musee.validate() == true
