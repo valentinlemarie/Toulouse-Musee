@@ -5,27 +5,16 @@ import grails.transaction.Transactional
 @Transactional
 class MuseeService {
 
-    Musee musee
-    Adresse adresse
-    Gestionnaire gestionnaire
-    def serviceMethod() {
-
-    }
-
-
-    def insertOrUpdateMusee(Musee musee,Adresse adresse1,Gestionnaire gestionnaire1){
-        musee.save()
-        musee.setAdresse(adresse1)
+    Musee insertOrUpdateMusee(Musee musee, Adresse adresse1, Gestionnaire gestionnaire1){
+        musee.Adresse = adresse1
         gestionnaire1.save()
-        musee.setGestionaire(gestionnaire1)
-        musee
+        gestionnaire1.addToMusees(musee)
+        musee.save()
     }
 
-    def removeMusse(Musee musee1)
+    void deleteMusee(Musee musee1)
     {
-        musee1.gestionaire
-        musee1.getGestionaire().removeFromMusees(musee1)
-        musee1.delete();
-        musee1
+        musee1.gestionnaire.removeFromMusees(musee1)
+        musee1.delete()
     }
 }
