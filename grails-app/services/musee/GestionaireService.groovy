@@ -3,7 +3,7 @@ package musee
 import grails.transaction.Transactional
 
 @Transactional
-class ServiceGestionaireService {
+class GestionaireService {
     Gestionnaire gestionnaire
     Musee musee
     def serviceMethod() {

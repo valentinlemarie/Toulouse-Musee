@@ -5,9 +5,9 @@ import spock.lang.*
 /**
  *
  */
-class ServiceAdresseServiceSpec extends Specification {
+class AdresseServiceSpec extends Specification {
 
-    ServiceAdresseService adresseService
+    AdresseService adresseService
 
     void "test insertion ou mise à jour d'une  adresse"() {
 

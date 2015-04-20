@@ -3,7 +3,7 @@ package musee
 import grails.transaction.Transactional
 
 @Transactional
-class ServiceAdresseService {
+class AdresseService {
 
     Adresse adresse
     Musee musee

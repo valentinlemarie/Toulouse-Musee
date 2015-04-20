@@ -3,7 +3,7 @@ package musee
 import grails.transaction.Transactional
 
 @Transactional
-class ServicesDemandeVisite {
+class DemandeVisiteService {
 
     DemandeVisite demandeVisite
     Musee musee
