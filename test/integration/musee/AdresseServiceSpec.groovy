@@ -17,7 +17,7 @@ class AdresseServiceSpec extends Specification {
         when: "on tente de répercuter en base la création ou la modification de l'adresse"
         Adresse resultAdresse = adresseService.insertOrUpdateAdresse(uneAdresse);
 
-        then: "l'adresse resultante pointe sur l'adresse initale"
+        then: "l'adresse résultante pointe sur l'adresse initiale"
         uneAdresse == resultAdresse
 
         and: "l'adresse résultante n'a pas d'erreur"

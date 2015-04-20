@@ -8,31 +8,41 @@ import spock.lang.*
  */
 class MuseeServiceSpec extends Specification {
 
+    MuseeService museeService
+
     void "test insertion ou mise à jour d'un  musee"() {
 
-        given:"un adresse"
-        Adresse uneAdresse = new Adresse(rue: "rue de Rudel",numero: 26,codePostal: "81000",ville: "Albi")
+        given: "une adresse"
+        Adresse uneAdresse = new Adresse(rue: "rue de Rudel", numero: 26, codePostal: "81000", ville: "Albi")
 
-        and:"un gestionaire"
-        Gestionnaire gestionnaire = new Gestionnaire(nom: "marc");
+        and: "un gestionaire"
+        Gestionnaire unGestionnaire = new Gestionnaire(nom: "marc");
 
-        and:"un musee"
+        and: "un musee"
+        Musee unMusee = new Musee(nom: "Musee", horairesOuverture: "lundi au vendredi de 10h a 20h", telephone: "0563214582")
 
-        Musee musee =  Musee musee = new Musee( gestionnaire: gestionnaire,adresse: uneAdresse, nom: "Musee", horairesOuverture: "lundi au vendredi de 10h a 20h", telephone: "0563214582", accesMetro: unAccesMetro, accesBus: unAccesBus)
+        when: "on tente de répercuter en base la création ou la modification du musée"
+        Musee resultMusee = museeService.insertOrUpdateMusee(unMusee, uneAdresse, unGestionnaire)
 
-        when: "on tente de répercuter en base la création ou la modification de l'adresse"
-        Adresse resultAdresse = adresseService.insertOrUpdateAdresse(uneAdresse);
+        then: "le musée résultant pointe sur le musée initial"
+        unMusee == resultMusee
 
-        then: "l'adresse resultante pointe sur l'adresse initale"
-        uneAdresse == resultAdresse
+        and: "le musée résultant n'a pas d'erreur"
+        !resultMusee.hasErrors()
 
-        and:"l'adresse résultante n'a pas d'erreur"
-        !resultAdresse.hasErrors()
+        and: "le musée résultant a un id"
+        resultMusee.getId()!= null
 
-        and:"l'adresse résultante a un id"
-        resultAdresse.getId()!= null
+        and: "le musée est bien present en base"
+        Musee.findById(resultMusee.id) != null
 
-        and:"l'adresse est bien presente en base"
-        Adresse.findById(resultAdresse.id) != null
+        and: "le musée a pour adresse l'adresse passée en paramètre"
+        resultMusee.adresse == uneAdresse
+
+        and: "le musée a pour gestionnaire le gestionnaire passé en paramètre"
+        resultMusee.gestionnaire == unGestionnaire
+
+        and: "le gestionnaire a dans sa liste de musée le musée passé en paramètre"
+        unGestionnaire.musees.contains(resultMusee)
     }
 }
