@@ -36,7 +36,7 @@ class MuseeController {
             return
         }
 
-        museeInstance.save flush:true
+        museeService.insertOrUpdateMusee(museeInstance, museeInstance.getAdresse(), museeInstance.getGestionnaire())
 
         request.withFormat {
             form multipartForm {
@@ -63,7 +63,7 @@ class MuseeController {
             return
         }
 
-        museeService.insertOrUpdateMusee(m)
+        museeService.insertOrUpdateMusee(museeInstance, museeInstance.getAdresse(), museeInstance.getGestionnaire())
 
         request.withFormat {
             form multipartForm {
@@ -82,7 +82,7 @@ class MuseeController {
             return
         }
 
-        museeInstance.delete flush:true
+        museeService.deleteMusee(museeInstance)
 
         request.withFormat {
             form multipartForm {
