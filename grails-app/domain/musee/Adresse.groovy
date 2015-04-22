@@ -13,4 +13,8 @@ class Adresse {
         codePostal size: 5..5, blank: false
         ville blank: false
     }
+
+    String toString() {
+        "$numero $rue $codePostal $ville"
+    }
 }
