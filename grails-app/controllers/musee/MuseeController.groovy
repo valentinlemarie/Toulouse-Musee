@@ -17,7 +17,7 @@ class MuseeController {
     }
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = 5//Math.min(max ?: 10, 100)
         respond Musee.list(params), model:[museeInstanceCount: Musee.count()]
     }
 
@@ -79,6 +79,7 @@ class MuseeController {
         }
     }
 
+
     @Transactional
     def delete(Musee museeInstance) {
 
@@ -107,4 +108,5 @@ class MuseeController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
 }

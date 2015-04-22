@@ -15,6 +15,6 @@ class Adresse {
     }
 
     String toString() {
-        "$numero $rue $codePostal $ville"
+        "$numero $rue ,$codePostal $ville"
     }
 }
