@@ -23,27 +23,19 @@ class MuseeService {
         def criteria = Musee.createCriteria()
         List<Musee> res = criteria.list {
             if (inNomMusee) {
-                musee {
-                    like 'nom', "%${inNomMusee}%"
-                }
+                like 'nom', "%${inNomMusee}%"
             }
             if (codePostal) {
-                musee {
-                    adresse {
-                        like 'codePostal', "%${codePostal}%"
-                    }
+                adresse {
+                    like 'codePostal', "%${codePostal}%"
                 }
             }
             if (inNomRue) {
-                musee {
-                    adresse {
-                        like 'rue', "%${inNomRue}%"
-                    }
+                adresse {
+                    like 'rue', "%${inNomRue}%"
                 }
             }
-            musee {
-                order('nom')
-            }
+            order('nom')
         }
         res
     }
