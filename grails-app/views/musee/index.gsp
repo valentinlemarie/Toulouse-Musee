@@ -1,5 +1,5 @@
 
-<%@ page import="musee.Musee" %>
+<%@ page import="musee.Adresse; musee.Musee" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,7 +30,7 @@
                         <label for="codePostal">
                             Le code postal du musée correspond à :
                         </label>
-                        <g:textField name="codePostal"/>
+                        <g:select name="codePostal" from="${musee.Adresse.list()}" value="${museeInstance?.adresse?.codePostal}"/>
                     </div>
                     <div class="fieldcontain">
                         <label for="rue">
