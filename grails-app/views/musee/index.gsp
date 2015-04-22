@@ -30,7 +30,7 @@
                         <label for="codePostal">
                             Le code postal du musée correspond à :
                         </label>
-                        <g:select name="codePostal" from="${musee.Adresse.list()}" value="${museeInstance?.adresse?.codePostal}"/>
+                        <g:select name="codePostal" from="${(musee.Adresse.list().codePostal.unique() << "").sort()}"/>
                     </div>
                     <div class="fieldcontain">
                         <label for="rue">
