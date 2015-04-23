@@ -12,12 +12,13 @@ class MuseeController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def doSearchMusees() {
+
         def museeList = museeService.searchMusees(params.nom,params.codePostal, params.rue)
-        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()])
+        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()],template:"_search?max=4"  )
     }
 
     def index(Integer max) {
-        params.max = 5//Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 5, 100)
         respond Musee.list(params), model:[museeInstanceCount: Musee.count()]
     }
 
