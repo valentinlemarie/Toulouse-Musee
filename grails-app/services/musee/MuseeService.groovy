@@ -22,7 +22,7 @@ class MuseeService {
     List<Musee> searchMusees(def param ,String inNomMusee, String codePostal, String inNomRue ) {
         def criteria = Musee.createCriteria()
 
-        List<Musee> res = criteria.list(max: param.max,offset: param.offset) {
+        List<Musee> res = criteria.list(/*max: param.max,offset: param.offset*/) {
             if (inNomMusee) {
                 like 'nom', "%${inNomMusee}%"
             }
