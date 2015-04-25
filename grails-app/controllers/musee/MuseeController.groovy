@@ -27,6 +27,25 @@ class MuseeController {
         render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()] )
     }
 
+
+    def demandevisitePage() {
+
+        def museeList = museeService.searchMusees(params,nom ,codepostal ,rue  )
+
+        render(view: 'visite', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()] )
+    }
+
+    def valideVisite(){
+
+
+
+        def museeList = museeService.searchMusees(params,nom ,codepostal ,rue)
+
+        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()] )
+
+    }
+
+
     def doSearchMusees() {
 
         if(nom == null || params.nom != null){
@@ -61,6 +80,8 @@ class MuseeController {
     def create() {
         respond new Musee(params)
     }
+
+
 
     @Transactional
     def save(Musee museeInstance) {

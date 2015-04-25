@@ -85,7 +85,6 @@
                                 <g:form action="updateMuseePrefere" id="${museeInstance.id}" > <g:actionSubmit action="updateMuseePrefere" value="Ajouter a mes preferes" /> </g:form>
                             </g:if>
                         </td>
-
 					</tr>
 				</g:each>
 				</tbody>
@@ -94,8 +93,9 @@
 				<g:paginate  total="${museeInstanceCount ?: 0}"   />
 			</div>
 
+            <g:if test="${museeInstanceList.findAll(){it.status==true}.size()>0 }">
             <h1>Mes Musee préférés</h1>
-
+                <g:form action="demandevisitePage"  > <g:actionSubmit action="demandevisitePage" value="Effectuer une demande de visite" /> </g:form>
 
             <table>
                 <thead>
@@ -110,6 +110,7 @@
                 <tbody>
 
                 <g:findAll  in="${museeInstanceList}" expr="${it.status==true}" >
+
                     <tr>
                         <td> ${it.nom}</td>
                         <td>
@@ -120,7 +121,7 @@
 
                 </tbody>
             </table>
-
+            </g:if>
 		</div>
 	</body>
 </html>
