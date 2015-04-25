@@ -7,7 +7,6 @@
 			#status {
 				background-color: #eee;
 				border: .2em solid #fff;
-				margin: 2em 2em 1em;
 				padding: 1em;
 				width: 12em;
 				float: left;
@@ -41,7 +40,7 @@
 			}
 
 			#page-body {
-				margin: 2em 1em 1.25em 18em;
+                width: 75%;
 			}
 
 			h2 {
@@ -65,7 +64,7 @@
 				margin: 0.25em 0;
 			}
 
-			@media screen and (max-width: 480px) {
+			@media screen and (max-width: 800px) {
 				#status {
 					display: none;
 				}
@@ -78,6 +77,10 @@
 					margin-top: 0;
 				}
 			}
+            #list-musee {
+                align-content: center;
+                margin-top: 30%;
+            }
 		</style>
 	</head>
 	<body>

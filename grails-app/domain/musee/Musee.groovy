@@ -11,6 +11,7 @@ class Musee {
     String telephone
     String accesMetro
     String accesBus
+    boolean status
 
     static constraints = {
         nom blank: false
@@ -20,5 +21,7 @@ class Musee {
         accesBus nullable: true, blank: true
     }
 
-
+    public String toString(){
+        return nom
+    }
 }

@@ -10,7 +10,7 @@ class MuseeService {
         gestionnaire1.addToMusees(musee)
         adresse1.save()
         musee.setAdresse(adresse1)
-        musee.save()
+        musee.save(flush: true)
     }
 
     void deleteMusee(Musee musee1)
@@ -22,7 +22,7 @@ class MuseeService {
     List<Musee> searchMusees(def param ,String inNomMusee, String codePostal, String inNomRue ) {
         def criteria = Musee.createCriteria()
 
-        List<Musee> res = criteria.list(/*max: param.max,offset: param.offset*/) {
+        List<Musee> res = criteria.list(max: param.max,offset: param.offset) {
             if (inNomMusee) {
                 like 'nom', "%${inNomMusee}%"
             }
@@ -40,4 +40,13 @@ class MuseeService {
         }
         res
     }
+
+    List<Musee> searchPrefere(){
+        def criteria = Musee.createCriteria()
+
+        List<Musee> res = criteria.list (){
+            eq("status",true)
+        }
+    }
+
 }

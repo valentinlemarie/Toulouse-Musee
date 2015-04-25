@@ -10,13 +10,43 @@ class MuseeController {
     MuseeService museeService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def rue
+    def codepostal
+    def nom
+
+    def updateMuseePrefere(){
+        def prefere =Musee.get(params.id)
+        System.out.println(params.id)
+        if(prefere){
+            prefere.status= !prefere.status
+            museeService.insertOrUpdateMusee(prefere,prefere.getAdresse(),prefere.getGestionnaire())
+        }
+
+        def museeList = museeService.searchMusees(params,nom ,codepostal ,rue  )
+
+        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()] )
+    }
+
     def doSearchMusees() {
-        def museeParams
+
+        if(nom == null || params.nom != null){
+            nom = params.nomMusee
+        }
+        if(codepostal == null || params.codePostal != null){
+            codepostal = params.codePostal
+        }
+        if(rue == null || params.rue != null){
+            rue = params.nomRue
+        }
+
+
+
         params.max = 5
 
-        def museeList = museeService.searchMusees(params,params.nom,params.codePostal ,params.rue  )
 
-        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()],params:[max:0]  )
+        def museeList = museeService.searchMusees(params,nom ,codepostal ,rue  )
+
+        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()] )
     }
 
     def index(Integer max) {

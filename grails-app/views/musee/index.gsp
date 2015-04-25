@@ -20,7 +20,7 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-            <g:form>
+            <g:form controller="musee" action="doSearchMusees" method="post">
                 <fieldset class="form">
                     <div class="fieldcontain">
                         <label for="nom">
@@ -43,6 +43,7 @@
                     </div>
                 </fieldset>
             </g:form>
+            <h1>Musee</h1>
 			<table>
 			<thead>
 					<tr>
@@ -58,9 +59,11 @@
 						<g:sortableColumn property="accesBus" title="${message(code: 'musee.accesBus.label', default: 'Acces Bus')}" />
 					
 						<th><g:message code="musee.adresse.label" default="Adresse" /></th>
-					
-					</tr>
-				</thead>
+
+                        <g:sortableColumn property="status" title="${message(code: 'musee.status.label', default: 'Status')}" />
+                    </tr>
+
+            </thead>
 				<tbody>
 				<g:each  in="${museeInstanceList}" status="i" var="museeInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
@@ -76,14 +79,48 @@
 						<td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
 					
 						<td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
-					
+
+                        <td>
+                            <g:if test="${museeInstance.status == false}">
+                                <g:form action="updateMuseePrefere" id="${museeInstance.id}" > <g:actionSubmit action="updateMuseePrefere" value="Ajouter a mes preferes" /> </g:form>
+                            </g:if>
+                        </td>
+
 					</tr>
 				</g:each>
 				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate total="${museeInstanceCount ?: 0}"   />
+				<g:paginate  total="${museeInstanceCount ?: 0}"   />
 			</div>
+
+            <h1>Mes Musee préférés</h1>
+
+
+            <table>
+                <thead>
+                <tr>
+
+                    <g:sortableColumn property="nom" title="${message(code: 'musee.nom.label', default: 'Nom')}" />
+
+                    <g:sortableColumn property="status" title="${message(code: 'musee.status.label', default: 'Status')}" />
+                </tr>
+
+                </thead>
+                <tbody>
+
+                <g:findAll  in="${museeInstanceList}" expr="${it.status==true}" >
+                    <tr>
+                        <td> ${it.nom}</td>
+                        <td>
+                                <g:form action="updateMuseePrefere" id="${it.id}" > <g:actionSubmit action="updateMuseePrefere" value="Retirer de mes preferes" /> </g:form>
+                        </td>
+                    </tr>
+                </g:findAll>
+
+                </tbody>
+            </table>
+
 		</div>
 	</body>
 </html>
