@@ -4,6 +4,13 @@
 		<meta name="layout" content="main"/>
 		<title>Welcome to Grails</title>
 		<style type="text/css" media="screen">
+            body {
+                background: none repeat scroll 0% 0% #FFF;
+                color: #333;
+                overflow-x: hidden;
+                box-shadow: 0px 0px 0.3em #255B17;
+                max-width: 1400px;
+            }
 			#status {
 				background-color: #eee;
 				border: .2em solid #fff;
@@ -30,7 +37,7 @@
 			}
 
 			#status li {
-				line-height: 1.3;
+				line-height: 1.0;
 			}
 
 			#status h1 {
@@ -40,7 +47,7 @@
 			}
 
 			#page-body {
-                width: 75%;
+                width: 100%;
 			}
 
 			h2 {
@@ -50,7 +57,7 @@
 			}
 
 			p {
-				line-height: 1.5;
+				line-height: 1.2;
 				margin: 0.25em 0;
 			}
 
@@ -59,7 +66,7 @@
 			}
 
 			#controller-list li {
-				line-height: 1.3;
+				line-height: 0.7;
 				list-style-position: inside;
 				margin: 0.25em 0;
 			}
@@ -77,9 +84,18 @@
 					margin-top: 0;
 				}
 			}
+            #musee{
+                float: left;
+                position: relative;
+            }
             #list-musee {
                 align-content: center;
                 margin-top: 30%;
+                width: -moz-min-content;
+            }
+            #prefere {
+                width: 35%;
+                float: right;
             }
 		</style>
 	</head>

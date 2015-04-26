@@ -8,4 +8,10 @@ class Gestionnaire {
     static constraints = {
         nom blank: false
     }
+
+
+    @Override
+    public String toString() {
+        return nom
+    }
 }

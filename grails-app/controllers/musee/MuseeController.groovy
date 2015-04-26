@@ -1,6 +1,6 @@
 package musee
 
-
+import org.bouncycastle.crypto.prng.RandomGenerator
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -8,6 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class MuseeController {
     MuseeService museeService
+    DemandeVisiteService demandeVisiteService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def rue
@@ -35,10 +36,21 @@ class MuseeController {
         render(view: 'visite', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()] )
     }
 
+    def accueil(){
+        def museeList = museeService.searchMusees(params,nom ,codepostal ,rue  )
+
+        render(view: 'accueil', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()] )
+    }
+
     def valideVisite(){
 
+        String alphabet =  (('A'..'Z')+('0'..'9')).join() ;
+        String randomString =new Random().with {
+            (1..10).collect { alphabet[ nextInt( alphabet.length() ) ] }.join()
+        }
 
-
+        DemandeVisite demandeVisite = new DemandeVisite( dateDebutPeriode: params.debut ,dateFinPeriode: params.fin,code: randomString )
+        def demande = demandeVisiteService.insertOrUpdateDemandeVisite(demandeVisite,Musee.get(params.museeInstance))
         def museeList = museeService.searchMusees(params,nom ,codepostal ,rue)
 
         render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()] )
