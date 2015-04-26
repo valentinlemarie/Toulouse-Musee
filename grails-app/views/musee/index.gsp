@@ -197,7 +197,7 @@
 				<g:each  in="${museeInstanceList}" status="i" var="museeInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><${fieldValue(bean: museeInstance, field: "nom")}</td>
+						<td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "nom")}</g:link></td>
 					
 						<td>${fieldValue(bean: museeInstance, field: "horairesOuverture")}</td>
 					
