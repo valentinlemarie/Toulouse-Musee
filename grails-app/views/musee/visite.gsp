@@ -12,11 +12,10 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
     </ul>
 </div>
 <div id="list-musee" class="content scaffold-list" role="main">
-    <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+    <h1>Formualaire d'une demande :</h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -43,6 +42,8 @@
                 </label>
                 <g:field type="nomber" id="nb" name="nombre" placeholder=" 6 est le maximum de visiteur possible " ></g:field>
             </div>
+
+             <g:actionSubmit action="valideVisite" value="Demande de visite" />
 
         </fieldset>
     </g:form>

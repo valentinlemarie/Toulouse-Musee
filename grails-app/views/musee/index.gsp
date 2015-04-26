@@ -110,13 +110,14 @@
 			</ul>
 		</div>
 		<div id="list-musee" class="content scaffold-list" role="main">
+            <br><br><div id="myDiv">${text}</div><br>
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
             <g:if test="${museeInstanceList.findAll(){it.status==true}.size()>0 }">
                 <div id="prefere">
-                    <h1>Mes Musee préférés</h1>
+                    <h1>Mes Musees préférés</h1>
                     <g:form action="demandevisitePage"  > <g:actionSubmit action="demandevisitePage" value="Effectuer une demande de visite" /> </g:form>
 
                     <table>

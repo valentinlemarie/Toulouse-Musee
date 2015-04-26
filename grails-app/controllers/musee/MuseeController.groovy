@@ -49,7 +49,8 @@ class MuseeController {
         def demande = demandeVisiteService.insertOrUpdateDemandeVisite(demandeVisite,Musee.get(params.museeInstance))
         def museeList = museeService.searchMusees(params,nom ,codepostal ,rue)
 
-        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()] )
+
+        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size(),text:".    Le code de votre Demande est:  "+randomString] )
 
     }
 
