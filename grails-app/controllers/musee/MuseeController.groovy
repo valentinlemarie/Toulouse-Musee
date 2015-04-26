@@ -1,6 +1,5 @@
 package musee
 
-import org.bouncycastle.crypto.prng.RandomGenerator
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -22,12 +21,9 @@ class MuseeController {
             prefere.status= !prefere.status
             museeService.insertOrUpdateMusee(prefere,prefere.getAdresse(),prefere.getGestionnaire())
         }
-
         def museeList = museeService.searchMusees(params,nom ,codepostal ,rue  )
-
         render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size()] )
     }
-
 
     def demandevisitePage() {
 
@@ -59,15 +55,14 @@ class MuseeController {
 
 
     def doSearchMusees() {
-
         if(nom == null || params.nom != null){
-            nom = params.nomMusee
+            nom = params.nom
         }
         if(codepostal == null || params.codePostal != null){
             codepostal = params.codePostal
         }
         if(rue == null || params.rue != null){
-            rue = params.nomRue
+            rue = params.rue
         }
 
 
@@ -144,8 +139,6 @@ class MuseeController {
             '*'{ respond museeInstance, [status: OK] }
         }
     }
-
-
     @Transactional
     def delete(Musee museeInstance) {
 
@@ -164,7 +157,6 @@ class MuseeController {
             '*'{ render status: NO_CONTENT }
         }
     }
-
     protected void notFound() {
         request.withFormat {
             form multipartForm {

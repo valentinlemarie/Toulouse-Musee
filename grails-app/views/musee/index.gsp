@@ -124,8 +124,9 @@
                         <tr>
 
                             <g:sortableColumn property="nom" title="${message(code: 'musee.nom.label', default: 'Nom')}" />
-
+                            <g:if test="${museeInstanceList.findAll(){it.status==true}.size()>=2}">
                             <g:sortableColumn property="status" title="${message(code: 'musee.status.label', default: 'Status')}" />
+                            </g:if>
                         </tr>
 
                         </thead>
@@ -135,9 +136,11 @@
 
                             <tr>
                                 <td> ${it.nom}</td>
+                                <g:if test="${museeInstanceList.findAll(){it.status==true}.size()>=2}">
                                 <td>
                                     <g:form action="updateMuseePrefere" id="${it.id}" > <g:actionSubmit action="updateMuseePrefere" value="Retirer de mes preferes" /> </g:form>
                                 </td>
+                                </g:if>
                             </tr>
                         </g:findAll>
 
