@@ -10,6 +10,7 @@ class MuseeServiceSpec extends Specification {
 
     MuseeService museeService
 
+    @Unroll
     void "test insertion ou mise à jour d'un  musee"() {
 
         given: "une adresse"
@@ -46,6 +47,7 @@ class MuseeServiceSpec extends Specification {
         unGestionnaire.musees.contains(resultMusee)
     }
 
+    @Unroll
     void "test suppression d'un musée"() {
 
         given: "un musée existant en base"

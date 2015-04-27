@@ -10,6 +10,8 @@ import spock.lang.*
 class DemandeVisiteServiceSpec extends Specification {
 
     DemandeVisiteService demandeVisiteService
+
+    @Unroll
     void "test insertion ou mise à jour d'une demande de visite"() {
 
         given: "une adresse"
@@ -42,6 +44,7 @@ class DemandeVisiteServiceSpec extends Specification {
         unMusee.demandes.contains(demandeVisite);
     }
 
+    @Unroll
     void "test suppression d'une demande de visite"() {
 
         given: "une musee "
