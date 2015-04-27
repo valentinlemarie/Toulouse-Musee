@@ -24,7 +24,7 @@ class MuseeService {
 
         List<Musee> res = criteria.list(max: param.max,offset: param.offset) {
             if (inNomMusee) {
-                like 'nom', "%${inNomMusee}%"
+                like 'nom', "%${inNomMusee.toUpperCase()}%"
             }
             if (codePostal) {
                 adresse {
@@ -33,7 +33,7 @@ class MuseeService {
             }
             if (inNomRue) {
                 adresse {
-                    like 'rue', "%${inNomRue}%"
+                    like 'rue', "%${inNomRue.toUpperCase()}%"
                 }
             }
             order('nom')

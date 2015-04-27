@@ -190,7 +190,7 @@
 						<g:sortableColumn property="accesBus" title="${message(code: 'musee.accesBus.label', default: 'Acces Bus')}" />
 					
 						<th><g:message code="musee.adresse.label" default="Adresse" /></th>
-                        <th><g:message code="musee.gestionaire.label" default="Gestionaire" /></th>
+                        <th><g:message code="musee.gestionaire.label" default="Gestionnaire" /></th>
 <g:if test="${museeInstanceCount >=3}">
                         <g:sortableColumn property="status" title="${message(code: 'musee.status.label', default: 'Status')}" />
     </g:if>
