@@ -9,13 +9,14 @@ class AdresseServiceSpec extends Specification {
 
     AdresseService adresseService
 
+    @Unroll
     void "test insertion ou mise à jour d'une  adresse"() {
 
         given: "une adresse"
-        Adresse uneAdresse = new Adresse(rue: "rue de Rudel",numero: 26,codePostal: "81000",ville: "Albi")
+        Adresse uneAdresse = new Adresse(numero: 26, rue: "rue de Rudel", codePostal: "81000", ville: "Albi")
 
         when: "on tente de répercuter en base la création ou la modification de l'adresse"
-        Adresse resultAdresse = adresseService.insertOrUpdateAdresse(uneAdresse);
+        Adresse resultAdresse = adresseService.insertOrUpdateAdresse(uneAdresse)
 
         then: "l'adresse résultante pointe sur l'adresse initiale"
         uneAdresse == resultAdresse
@@ -30,6 +31,7 @@ class AdresseServiceSpec extends Specification {
         Adresse.findById(resultAdresse.id) != null
     }
 
+    @Unroll
     void "test suppression d'une adresse"() {
 
         given: "une adresse existante en base"

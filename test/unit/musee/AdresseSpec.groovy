@@ -40,4 +40,12 @@ class AdresseSpec extends Specification {
 
     }
 
+    @Unroll
+    void "test l'affichage personnalisé de l'adresse"() {
+        given: "une adresse"
+        Adresse adresse = new Adresse(numero: 1, rue: "rue de la paix", codePostal: "81200", ville: "Labruguière")
+
+        expect: "un affichage correct"
+        adresse.toString() == "1 rue de la paix 81200 Labruguière"
+    }
 }

@@ -24,9 +24,10 @@ class GestionnaireSpec extends Specification {
     }
 
     @Unroll
-    void "test l'invalidite d'un gestionnaire invalide"(String unNom, int test){
+    void "test l'invalidite d'un gestionnaire invalide"(String unNom, int test) {
         given: "un gestionnaire mal initialise"
         Gestionnaire gestionnaire = new Gestionnaire(nom: unNom)
+
         expect: "un gestionnaire invalide"
         gestionnaire.validate() == false
 
@@ -34,5 +35,14 @@ class GestionnaireSpec extends Specification {
         unNom | test
         ""    | 10
         null  | 10
+    }
+
+    @Unroll
+    void "test l'affichage personnalisé du gestionnaire"() {
+        given: "un gestionnaire"
+        Gestionnaire gestionnaire = new Gestionnaire(nom: "Mairie de Toulouse")
+
+        expect: "un affichage correct"
+        gestionnaire.toString() == "Mairie de Toulouse"
     }
 }

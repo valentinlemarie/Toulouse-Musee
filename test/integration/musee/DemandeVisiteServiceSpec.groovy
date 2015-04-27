@@ -16,7 +16,7 @@ class DemandeVisiteServiceSpec extends Specification {
         Adresse uneAdresse = new Adresse(rue: "rue de Rudel", numero: 26, codePostal: "81000", ville: "Albi")
 
         and: "un gestionaire"
-        Gestionnaire unGestionnaire = new Gestionnaire(nom: "marc");
+        Gestionnaire unGestionnaire = new Gestionnaire(nom: "marc")
 
         and: "un musee"
         Musee unMusee = new Musee(nom: "Musee", horairesOuverture: "lundi au vendredi de 10h a 20h", telephone: "0563214582")
